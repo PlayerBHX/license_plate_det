@@ -5,13 +5,15 @@
 
 ## 畫面
 
-> 可提供 1~3 張圖片，讓觀看者透過 README 了解整體畫面
-
 ![範例圖片 1](https://fakeimg.pl/500/)
 ![範例圖片 2](https://fakeimg.pl/500/)
 ![範例圖片 3](https://fakeimg.pl/500/)
-### 安裝套件
+### 環境
 
+創建ENV環境
+pip install -r requirements.txt
+pip install easyocr
 
 ### 開啟專案
+python3 
 
