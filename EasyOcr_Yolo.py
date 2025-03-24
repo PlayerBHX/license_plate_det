@@ -13,8 +13,7 @@ reader = easyocr.Reader(['en'])  # 可加 'ch_tra' 來辨識繁體中文
 # Model
 model_path = r"best.pt"  # Custom model path
 video_path = r"anpr_video.mp4"  # Input video path
-cpu_or_cuda = "cpu"  # Choose "cpu" or "cuda"
-device = torch.device(cpu_or_cuda)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = torch.hub.load('ultralytics/yolov5', 'custom', path=model_path, force_reload=True)
 model = model.to(device)
 
