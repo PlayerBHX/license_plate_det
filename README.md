@@ -4,7 +4,6 @@
 ![專案封面圖](https://github.com/PlayerBHX/license_plate_det/blob/main/Main.png)
 
 ## 辨識畫面
-###影片
 
 ### EV_Normal (Det EV)
 
