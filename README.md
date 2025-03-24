@@ -7,7 +7,7 @@
 ###影片
 
 ### EV_Normal (Det EV)
-![Video](https://github.com/PlayerBHX/license_plate_det/blob/main/2025-03-24%2015-07-13.mp4)
+
 ![EV_Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Normal.PNG)
 ### EV_Rent (Det EV)
 ![EV_Rent](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Rent.PNG)
