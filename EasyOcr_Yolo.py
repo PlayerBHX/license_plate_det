@@ -18,7 +18,7 @@ model = torch.hub.load('ultralytics/yolov5', 'custom', path=model_path, force_re
 model = model.to(device)
 
 # Video Capture
-frame = cv2.VideoCapture(2)
+frame = cv2.VideoCapture(2)#改錄影裝置
 frame_width = int(frame.get(3))
 frame_height = int(frame.get(4))
 size = (frame_width, frame_height)
@@ -44,9 +44,7 @@ while True:
 
             # 繪製偵測框
             cv2.rectangle(image, (x1, y1), (x2, y2), color=color, thickness=2)
-            cv2.putText(image, text=f"{i[-1]} {i[-3]:.2f}", org=text_origin,
-                        fontFace=text_font, fontScale=text_font_scale,
-                        color=color, thickness=2)
+            
 
             # 擷取車牌區域
             cropped_region = image[y1:y2, x1:x2]
@@ -68,16 +66,30 @@ while True:
             ocr_results = reader.readtext(thresh)
             
             for bbox, text, prob in ocr_results:
-                print(f"OCR 辨識結果: {text} (信心: {prob:.2f})")
-                cv2.putText(cropped_region, text, (17, 17), text_font, 1, (0, 255, 0), 2)
-                cv2.imshow("cropped_region", cropped_region)
-                cv2.imshow("thresh", thresh)
-            '''
-            text = pytesseract.image_to_string(thresh, config=("--psm 8"))
-            print(f"OCR 辨識結果: {text}")
-            cv2.putText(cropped_region, text, (27, 27), text_font, 1, (0, 255, 0), 2)
-            cv2.imshow("cropped_region", cropped_region)
-            '''
+                #print(f"OCR 辨識結果: {text}")
+
+                # 處理文字（去空格、轉大寫）
+                plate_text = text.replace(" ", "").upper()
+
+                # 預設為一般車
+                is_ev = False
+                text_color = (0, 0, 255)  # 綠色：一般車
+
+                # 如果是以 E 開頭，判斷為電動車
+                if plate_text.startswith("E") or plate_text.startswith("RE"):
+                    is_ev = True
+                    text=">> DET EV"#Electric Vehicle
+                    text_color = (0, 255, 0)  
+                    
+                    print(">> 偵測到電動車！")
+                else:
+                    text = "is not EV"
+                # 顯示文字
+                cv2.putText(image, f"{text}", text_origin, text_font, 1, text_color, 2)
+
+                # 顯示結果
+                #cv2.imshow("cropped_region", cropped_region)
+                #cv2.imshow("thresh", thresh)
             
         # 計算 FPS
         new_frame_time = time.time()
