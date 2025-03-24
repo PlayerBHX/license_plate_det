@@ -5,9 +5,10 @@
 
 ## 畫面
 
-![範例圖片 1](https://fakeimg.pl/500/)
-![範例圖片 2](https://fakeimg.pl/500/)
-![範例圖片 3](https://fakeimg.pl/500/)
+![EV_Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Normal.PNG)
+![EV_Rent](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Rent.PNG)
+![RENT](https://github.com/PlayerBHX/license_plate_det/blob/main/RENT.PNG)
+![Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/Normal.PNG)
 ### 環境
 
 創建ENV環境
