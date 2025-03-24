@@ -1,7 +1,7 @@
 # license_plate_det
 
 
-![專案封面圖](https://drive.google.com/file/d/1ZHWXl5LHiC_5WrIa7hTjzWX46nN8Ak0M/view?usp=sharing)
+![專案封面圖](https://github.com/PlayerBHX/license_plate_det/blob/main/Main.png)
 
 ## 畫面
 
