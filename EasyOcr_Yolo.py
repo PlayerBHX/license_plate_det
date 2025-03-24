@@ -73,7 +73,7 @@ while True:
 
                 # 預設為一般車
                 is_ev = False
-                text_color = (0, 0, 255)  # 綠色：一般車
+                text_color = (0, 0, 255)  
 
                 # 如果是以 E 開頭，判斷為電動車
                 if plate_text.startswith("E") or plate_text.startswith("RE"):
