@@ -1,9 +1,5 @@
 # license_plate_det
-<!-- 底下標籤來源參考寫法可至：https://github.com/Envoy-VC/awesome-badges#github-stats -->
 
-![](https://img.shields.io/github/stars/hsiangfeng/README-Example-Template.svg)｜![](https://img.shields.io/github/forks/hsiangfeng/README-Example-Template.svg)｜![](https://img.shields.io/github/issues-pr/hsiangfeng/README-Example-Template.svg)｜![](https://img.shields.io/github/issues/hsiangfeng/README-Example-Template.svg)
-
-# README Template
 
 ![專案封面圖](https://drive.google.com/file/d/1ZHWXl5LHiC_5WrIa7hTjzWX46nN8Ak0M/view?usp=sharing)
 
