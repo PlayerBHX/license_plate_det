@@ -44,19 +44,15 @@ while True:
 
             # 擷取車牌區域
             cropped_region = image[y1:y2, x1:x2]
-            
+            cropped_region = cv2.resize(cropped_region, (300, 100))
             # 確保裁剪區域不為空
             if cropped_region.size == 0:
                 continue
 
             # 轉為灰階
             gray = cv2.cvtColor(cropped_region, cv2.COLOR_BGR2GRAY)
-
-            # 濾波去雜訊
             gray = cv2.medianBlur(gray, 3)
-
-            # OTSU 二值化
-            _, thresh = cv2.threshold(gray, 0, 155, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+            _, thresh = cv2.threshold(gray, 80, 255, cv2.THRESH_BINARY)
             
             # 使用 EasyOCR 進行辨識
             ocr_results = reader.readtext(thresh)
