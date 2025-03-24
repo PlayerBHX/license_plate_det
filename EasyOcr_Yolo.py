@@ -4,9 +4,6 @@ import numpy as np
 import time
 import easyocr
 
-import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
 # 初始化 EasyOCR
 reader = easyocr.Reader(['en'])  # 可加 'ch_tra' 來辨識繁體中文
 
