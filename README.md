@@ -7,7 +7,7 @@
 
 ### EV_Normal (Det EV)
 
-![EV_Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Normal.PNG)
+![EV_Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Normal_0325.PNG)
 ### EV_Rent (Det EV)
 ![EV_Rent](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Rent.PNG)
 ### RENT (is not EV)
