@@ -11,9 +11,9 @@
 ### EV_Rent (Det EV)
 ![EV_Rent](https://github.com/PlayerBHX/license_plate_det/blob/main/EV_Rent_0325.PNG)
 ### RENT (is not EV)
-![RENT](https://github.com/PlayerBHX/license_plate_det/blob/main/RENT.PNG)
+![RENT](https://github.com/PlayerBHX/license_plate_det/blob/main/RENT_0325.PNG)
 ### Normal(is not EV)
-![Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/normal.PNG)
+![Normal](https://github.com/PlayerBHX/license_plate_det/blob/main/normal_0325.PNG)
 ## 環境
 
 1.創建ENV環境
