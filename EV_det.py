@@ -1,3 +1,8 @@
+'''
+Hsiang 2025/03/25
+優化影像前處理
+新增中文辨識結合EV判斷機制
+'''
 import cv2
 import numpy as np
 import cv2
@@ -5,13 +10,13 @@ import torch
 import numpy as np
 import easyocr
 
-model_path = "best.pt"  # 你的訓練車牌模型
+model_path = "best.pt"      #yolo model path
 model = torch.hub.load('ultralytics/yolov5', 'custom', path=model_path)
 reader = easyocr.Reader(['en'], gpu=True)  # 可加 'ch_tra' 來辨識繁體中文
 reader_zh = easyocr.Reader(['ch_tra'], gpu=True)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = model.to(device)
-
+''''''
 def rectify_plate(cropped_image):
     try:
         gray = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)#灰階
@@ -60,7 +65,6 @@ def rectify_plate(cropped_image):
 
 # ========== 主測試程式 ==========
 if __name__ == "__main__":
-    # 輸入測試圖片（請改成你的裁切車牌圖片）
     warped = None
     cap = cv2.VideoCapture(2)  # 可改成影片路徑
     size = (1280, 720)
@@ -73,12 +77,13 @@ if __name__ == "__main__":
         is_ev_zh = False
         text = ""
         plate_text = ""
+        text_color = (0, 255, 0) 
         ret, frame = cap.read()
         if not ret:
             break
         frame = cv2.resize(frame, size)
         
-        # YOLO 推論
+        #YOLO
         results = model(frame)
         result = np.array(results.pandas().xyxy[0])
 
@@ -89,21 +94,19 @@ if __name__ == "__main__":
 
             if cropped.size > 0:  # 確保裁切區域不為空
                 cv2.imshow("cropped", cropped)  # 顯示裁切區域
-                #warped = rectify_plate(cropped)  # 拉平
                 
-                # OCR 辨識
+                # OCR(ZH)
                 gray = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)#灰階
-                
-                  
-
                 ocr_results_zh = reader_zh.readtext(gray)
                 for _, zh_text, conf in ocr_results_zh:
                     print(f"OCR 辨識結果：{zh_text}（信心 {conf:.2f}）")
                     if "電" in zh_text or "動" in zh_text or "車" in zh_text:
                         is_ev_zh = True
-                    break  # 只取第一筆'
+                    break  #只取第一筆
+                
+                # OCR(EN)                     測試過80效果不錯
                 _, thresh = cv2.threshold(gray, 80, 255, cv2.THRESH_BINARY)#二值化 
-                thresh = cv2.resize(thresh, (300, 100))    
+                thresh = cv2.resize(thresh, (180, 80))    
                 cv2.imshow("thresh", thresh)   
                 ocr_results = reader.readtext(thresh)
                 for _, text, conf in ocr_results:
@@ -114,7 +117,7 @@ if __name__ == "__main__":
                         is_ev_en = True
                     else:
                         text = "is not EV!"
-                    break  # 只取第一筆'
+                    break  #取第一筆
                 
                 print(is_ev_en, is_ev_zh)
                 if is_ev_zh:
@@ -123,12 +126,14 @@ if __name__ == "__main__":
                     text = "Is_EV!"
                 elif is_ev_en:    
                     text = "Is_EV! But Double Check!"
-                
-                
-                cv2.putText(frame, text+"NUM:"+plate_text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                
-                
+                else:
+                    text = "is not EV!"
+                    text_color = (0, 0, 255)
+                cv2.putText(frame, text+"NUM:"+plate_text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, text_color, 2)
+
                 '''
+                #歪斜修正(效果極差待優化)
+                #warped = rectify_plate(cropped)  # 拉平
                 if warped is not None:  # 如果有拉平
                       # 顯示拉平後車牌
                     
@@ -147,6 +152,7 @@ if __name__ == "__main__":
                 else:
                     print("未找到合適的四邊形輪廓")  # 未找到合適的四邊形輪廓
                 '''
+
             else:
                 print("Non_cropped")  # 裁切區域為空，跳過處理
 
