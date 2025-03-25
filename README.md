@@ -21,5 +21,5 @@
 3.pip install easyocr
 
 ## 啟動
-python3 EasyOcr_Yolo
+python3 EV_det.py
 
