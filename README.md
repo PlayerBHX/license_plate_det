@@ -1,4 +1,4 @@
-# license_plate_det
+# EV_det
 
 
 ![專案封面圖](https://github.com/PlayerBHX/license_plate_det/blob/main/Main.png)
