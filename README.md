@@ -1,4 +1,24 @@
 # EV_det
+## 📄 第三方授權聲明（Third Party Notice）
+
+本專案使用了以下第三方開源軟體，並已遵循其授權條款：
+
+---
+
+### 📦 EasyOCR
+
+- 原始碼位置：[https://github.com/JaidedAI/EasyOCR](https://github.com/JaidedAI/EasyOCR)
+- 授權方式：Apache License 2.0
+- 原始版權資訊：
+  ```
+  Copyright 2020 Jaided AI
+  Licensed under the Apache License, Version 2.0
+  http://www.apache.org/licenses/LICENSE-2.0
+  ```
+
+---
+
+本專案為商業用途，原始碼未公開，惟根據 Apache 2.0 授權條款附上必要授權聲明與授權內容（請見 `LICENSE.txt` 與 `third_party_licenses.txt`）。
 
 
 ![專案封面圖](https://github.com/PlayerBHX/license_plate_det/blob/main/Main.png)
